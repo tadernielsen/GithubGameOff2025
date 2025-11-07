@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 1987648262557205402}
   - component: {fileID: 6974153467072520611}
   - component: {fileID: -6197922429504111354}
+  - component: {fileID: 3168219128553647315}
   m_Layer: 0
   m_Name: DroppableItem
-  m_TagString: Untagged
+  m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,3 +148,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 1
+--- !u!114 &3168219128553647315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4711051489592764396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4771fade921b21549ade2962528196fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 35
+  height: 8
