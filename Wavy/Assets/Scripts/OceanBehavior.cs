@@ -25,6 +25,7 @@ public class OceanBehavior : MonoBehaviour
     [SerializeField] private float waveSpeed = 1.0f;
     [SerializeField] private float waveStrength = 1.0f;
 
+    [SerializeField] private LayerMask boatLayer;
     private List<Wave> currentWaves = new List<Wave>();
 
     // Start is called before the first frame update
@@ -64,7 +65,7 @@ public class OceanBehavior : MonoBehaviour
 
     private void applyWaveForces(Wave wave)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(wave.position, wave.radius + waveWidth);
+        Collider[] hitColliders = Physics.OverlapSphere(wave.position, wave.radius + waveWidth, boatLayer);
 
         foreach (Collider hitCollider in hitColliders)
         {
@@ -83,7 +84,7 @@ public class OceanBehavior : MonoBehaviour
             }
         }
     }
-    
+
     private void ApplyObjectForce(Rigidbody rb, Wave wave, float distanceFromWaveEdge)
     {
         Vector3 objPos = rb.position;
@@ -93,16 +94,16 @@ public class OceanBehavior : MonoBehaviour
 
         rb.AddForce(force, ForceMode.Force);
     }
-
-    void OnCollisionEnter(Collision collision)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag != "Object")
+        if (other.gameObject.tag != "Object")
         {
             return;
         }
 
-        Vector3 contact = collision.contacts[0].point;
-        ObjectBehavior obj = collision.gameObject.GetComponent<ObjectBehavior>();
+        Vector3 contact = other.ClosestPoint(transform.position);
+        ObjectBehavior obj = other.gameObject.GetComponent<ObjectBehavior>();
 
         CreateWave(contact, obj.radius);
     }
