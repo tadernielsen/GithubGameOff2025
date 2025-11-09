@@ -25,7 +25,7 @@ public class HighAngleCamera : MonoBehaviour
 
         if (lockedOnBoat)
         {
-            Vector3 targetPosition = boat.position + new Vector3(0, 4, -4.25f);
+            Vector3 targetPosition = boat.position + new Vector3(0, 6, -6.25f);
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * cameraSpeed);
         }
         else

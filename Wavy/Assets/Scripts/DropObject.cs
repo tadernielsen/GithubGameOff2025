@@ -24,7 +24,7 @@ public class DropObject : MonoBehaviour
         Ray mouseRay = cam.ScreenPointToRay(mousePos);
         RaycastHit hit;
 
-        if (Input.GetMouseButtonDown(0) && Physics.Raycast(mouseRay, out hit, 10f) && canClick)
+        if (Input.GetMouseButtonDown(0) && Physics.Raycast(mouseRay, out hit, 15f) && canClick)
         {
             if (hit.collider.gameObject.tag == "Water")
             {
