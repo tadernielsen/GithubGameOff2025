@@ -21,7 +21,6 @@ public class OceanBehavior : MonoBehaviour
     }
 
     [Header("Wave Settings")]
-    [SerializeField] private float waveHeight = 1.0f;
     [SerializeField] private float waveWidth = 1.0f;
     [SerializeField] private float waveSpeed = 1.0f;
     [SerializeField] private float waveStrength = 1.0f;
@@ -90,7 +89,7 @@ public class OceanBehavior : MonoBehaviour
         Vector3 objPos = rb.position;
         Vector3 direction = new Vector3(objPos.x - wave.position.x, 0, objPos.z - wave.position.z).normalized;
 
-        Vector3 force = direction * waveStrength + Vector3.up * waveHeight;
+        Vector3 force = direction * waveStrength;
 
         rb.AddForce(force, ForceMode.Force);
     }
