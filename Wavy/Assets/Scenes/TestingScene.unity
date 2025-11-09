@@ -440,7 +440,7 @@ Rigidbody:
   m_GameObject: {fileID: 482415283}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -663,11 +663,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f742a565ee2b4a8b26e31677c9125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveHeight: 1
-  waveWidth: 1
-  waveSpeed: 1
-  waveStrength: 1
-  waveRadius: 1
+  waveHeight: 2.5
+  waveWidth: 2
+  waveSpeed: 2
+  waveStrength: 2
 --- !u!1 &693911913
 GameObject:
   m_ObjectHideFlags: 0

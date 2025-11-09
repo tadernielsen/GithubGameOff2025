@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class OceanBehavior : MonoBehaviour
@@ -12,7 +11,7 @@ public class OceanBehavior : MonoBehaviour
         public float time;
         public float maxRadius;
 
-        public Wave(Vector3 pos, float time, float maxRadius = 1.0f)
+        public Wave(Vector3 pos, float time, float maxRadius)
         {
             this.position = pos;
             this.radius = 0.0f;
@@ -26,7 +25,6 @@ public class OceanBehavior : MonoBehaviour
     [SerializeField] private float waveWidth = 1.0f;
     [SerializeField] private float waveSpeed = 1.0f;
     [SerializeField] private float waveStrength = 1.0f;
-    [SerializeField] private float waveRadius = 1.0f; // Default; should be based off of the object radius
 
     private List<Wave> currentWaves = new List<Wave>();
 
@@ -44,6 +42,7 @@ public class OceanBehavior : MonoBehaviour
 
     private void CreateWave(Vector3 pos, float radius)
     {
+        Debug.Log("Creating Wave");
         Vector3 wavePostion = new Vector3(pos.x, transform.position.y, pos.z);
         currentWaves.Add(new Wave(wavePostion, Time.time, radius));
     }
@@ -88,7 +87,12 @@ public class OceanBehavior : MonoBehaviour
     
     private void ApplyObjectForce(Rigidbody rb, Wave wave, float distanceFromWaveEdge)
     {
-        // Calculates and applies force to the boat
+        Vector3 objPos = rb.position;
+        Vector3 direction = new Vector3(objPos.x - wave.position.x, 0, objPos.z - wave.position.z).normalized;
+
+        Vector3 force = direction * waveStrength + Vector3.up * waveHeight;
+
+        rb.AddForce(force, ForceMode.Force);
     }
 
     void OnCollisionEnter(Collision collision)
