@@ -289,9 +289,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 4711051489592764396, guid: e93a7d55635cd8c4594386afd41640ff, type: 3}
+  - {fileID: 4711051489592764396, guid: d19560c01c245da4eb908ef7403692e0, type: 3}
+  - {fileID: 4711051489592764396, guid: 7635d826c3241c54fb819a38c6f831b7, type: 3}
+  currentObject: {fileID: 0}
   cam: {fileID: 330585545}
-  testClick: {fileID: 1889693387236290376, guid: de22693b8d2ba824e83bc08f1cc7959f,
-    type: 3}
   clickDelay: 0.5
 --- !u!1 &410087039
 GameObject:

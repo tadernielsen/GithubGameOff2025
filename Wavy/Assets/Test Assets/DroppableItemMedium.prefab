@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -6197922429504111354}
   - component: {fileID: 3168219128553647315}
   m_Layer: 0
-  m_Name: DroppableItem
+  m_Name: DroppableItemMedium
   m_TagString: Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,5 +160,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4771fade921b21549ade2962528196fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
+  radius: 2
   height: 8

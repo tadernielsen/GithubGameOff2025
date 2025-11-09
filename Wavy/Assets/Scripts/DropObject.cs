@@ -5,11 +5,12 @@ using UnityEngine;
 public class DropObject : MonoBehaviour
 {
     public GameObject[] objects = new GameObject[1];
+    public GameObject currentObject;
     public Camera cam;
-    public GameObject testClick;
     public float clickDelay = 0.5f;
 
     private bool canClick = true;
+    private int currentIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,15 @@ public class DropObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f && currentIndex < objects.Length - 1)
+        {
+            currentIndex++;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f && currentIndex > 0)
+        {
+            currentIndex--;
+        }
+
         Vector2 mousePos = Input.mousePosition;
         Ray mouseRay = cam.ScreenPointToRay(mousePos);
         RaycastHit hit;
@@ -28,7 +38,7 @@ public class DropObject : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Water")
             {
-                Instantiate(objects[0], hit.point + new Vector3(0, 2, 0), Quaternion.identity);
+                Instantiate(objects[currentIndex], hit.point + new Vector3(0, 2, 0), Quaternion.identity);
                 StartCoroutine("delay");
             }
         }
