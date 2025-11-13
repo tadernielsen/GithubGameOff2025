@@ -14,18 +14,12 @@ public class UIManager : MonoBehaviour
     private TextMeshProUGUI healthValue;
     private TextMeshProUGUI objectName;
 
-    void Start()
+    void Awake()
     {
         dropsValue = dropsBar.transform.Find("Drops Number").GetComponent<TextMeshProUGUI>();
         parValue = dropsBar.transform.Find("Par Number").GetComponent<TextMeshProUGUI>();
         healthValue = healthBar.transform.Find("Health Number").GetComponent<TextMeshProUGUI>();
         objectName = itemBar.transform.Find("Item").GetComponent<TextMeshProUGUI>();
-    }
-
-    public void SetupUI(int par = 0)
-    {
-        UpdateDrops();
-        UpdatePar(par);
     }
 
     public void UpdateDrops(int drops = 0)
