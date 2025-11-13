@@ -20,11 +20,15 @@ public class UIManager : MonoBehaviour
         parValue = dropsBar.transform.Find("Par Number").GetComponent<TextMeshProUGUI>();
         healthValue = healthBar.transform.Find("Health Number").GetComponent<TextMeshProUGUI>();
         objectName = itemBar.transform.Find("Item").GetComponent<TextMeshProUGUI>();
-
-        test();
     }
 
-    public void UpdateDrops(int drops)
+    public void SetupUI(int par = 0)
+    {
+        UpdateDrops();
+        UpdatePar(par);
+    }
+
+    public void UpdateDrops(int drops = 0)
     {
         dropsValue.text = drops.ToString();
     }
@@ -42,13 +46,5 @@ public class UIManager : MonoBehaviour
     public void UpdateObject(string itemName)
     {
         objectName.text = itemName;
-    }
-
-    private void test()
-    {
-        UpdateDrops(Random.Range(0, 100));
-        UpdatePar(Random.Range(0, 100));
-        UpdateHealth(Random.Range(0, 100));
-        UpdateObject("Test Item");
     }
 }
