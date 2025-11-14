@@ -11,6 +11,7 @@ public class DropObject : MonoBehaviour
 
     private bool canClick = true;
     private int currentIndex = 0;
+    private GameManager gameManager;
     private UIManager uiManager;
 
     // Start is called before the first frame update
@@ -20,6 +21,8 @@ public class DropObject : MonoBehaviour
 
         uiManager = FindObjectOfType<UIManager>();
         updateUI();
+
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
@@ -59,6 +62,7 @@ public class DropObject : MonoBehaviour
     private void dropObject(Vector3 position)
     {
         Instantiate(objects[currentIndex], position, Quaternion.identity);
+        gameManager.DroppedObject();
         StartCoroutine("delay");
     }
 

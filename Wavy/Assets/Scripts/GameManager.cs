@@ -41,4 +41,10 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateDrops();
         uiManager.UpdatePar(currentLevel.par);
     }
+
+    public void DroppedObject()
+    {
+        currentLevel.objectDropped++;
+        uiManager.UpdateDrops(currentLevel.objectDropped);
+    }
 }

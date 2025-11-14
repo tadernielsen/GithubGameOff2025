@@ -6,4 +6,5 @@ public class LevelData : MonoBehaviour
 {
     public int levelNumber;
     public int par;
+    public int objectDropped = 0;
 }

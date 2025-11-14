@@ -6,7 +6,7 @@ public class BoatBehavior : MonoBehaviour
 {
     public int health;
 
-    [Header("BoyancySettings")]
+    [Header("Boyancy Settings")]
     public float waterLevel = 0f;
     public float buoyancyForce = 10f;
     public float displacementAmount = 0.1f;
