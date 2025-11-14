@@ -15,10 +15,12 @@ public class BoatBehavior : MonoBehaviour
 
     private UIManager uiManager;
     private Rigidbody rb;
+    private GameManager gameManager;
 
     void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
+        gameManager = GameManager.Instance;
     }
 
     void Start()
@@ -40,12 +42,16 @@ public class BoatBehavior : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        health--;
-        uiManager.UpdateHealth(health);
-
-        if (health <= 0)
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
-            // Boat distruction
+            health--;
+            uiManager.UpdateHealth(health);
+
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+                gameManager.StartReset();
+            }
         }
     }
 }

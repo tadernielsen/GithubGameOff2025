@@ -20,8 +20,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameObject boat;
+
     private LevelData currentLevel;
     private UIManager uiManager;
+
+    private GameObject respawnPoint;
+    private HighAngleCamera cam;
 
     void OnEnable()
     {
@@ -35,16 +40,63 @@ public class GameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        currentLevel = FindObjectOfType<LevelData>();
-        uiManager = FindObjectOfType<UIManager>();
-
-        uiManager.UpdateDrops();
-        uiManager.UpdatePar(currentLevel.par);
+        if (scene.name == "Menu")
+        {
+            // Menu Scene
+        }
+        else
+        {
+            InitializeLevel();
+        }
     }
 
     public void DroppedObject()
     {
         currentLevel.objectDropped++;
         uiManager.UpdateDrops(currentLevel.objectDropped);
+    }
+
+    public void StartReset()
+    {
+        StartCoroutine("Delay");
+    }
+
+    public void CompleteLevel()
+    {
+        
+    }
+
+    private void InitializeLevel()
+    {
+        currentLevel = FindObjectOfType<LevelData>();
+        uiManager = FindObjectOfType<UIManager>();
+        cam = FindObjectOfType<HighAngleCamera>();
+
+        respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
+
+        uiManager.UpdateDrops();
+        uiManager.UpdatePar(currentLevel.par);
+
+        CreateBoat();
+    }
+
+    private void Reset()
+    {
+        currentLevel.objectDropped = 0;
+        uiManager.UpdateDrops();
+
+        CreateBoat();
+    }
+
+    private void CreateBoat()
+    {
+        GameObject newBoat = Instantiate(boat, respawnPoint.transform.position, Quaternion.identity);
+        cam.boat = newBoat.transform;
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(2f);
+        Reset();
     }
 }

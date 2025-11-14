@@ -9,12 +9,6 @@ public class HighAngleCamera : MonoBehaviour
 
     private bool lockedOnBoat = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -23,19 +17,30 @@ public class HighAngleCamera : MonoBehaviour
             lockedOnBoat = !lockedOnBoat;
         }
 
-        if (lockedOnBoat)
+        if (boat != null)
         {
-            Vector3 targetPosition = boat.position + new Vector3(0, 6, -6.25f);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * cameraSpeed);
-        }
-        else
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            float verticalInput = Input.GetAxis("Vertical");
+            if (lockedOnBoat)
+            {
+                if (boat != null)
+                {
+                    lockOn();
+                }
+            }
+            else
+            {
+                float horizontalInput = Input.GetAxis("Horizontal");
+                float verticalInput = Input.GetAxis("Vertical");
 
-            Vector3 movement = new Vector3(horizontalInput, 0, verticalInput) * cameraSpeed * Time.deltaTime;
+                Vector3 movement = new Vector3(horizontalInput, 0, verticalInput) * cameraSpeed * Time.deltaTime;
 
-            transform.position += movement;
+                transform.position += movement;
+            }
         }
+    }
+
+    public void lockOn()
+    {
+        Vector3 targetPosition = boat.position + new Vector3(0, 6, -6.25f);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * cameraSpeed);
     }
 }
