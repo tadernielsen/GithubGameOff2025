@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject boat;
 
+    [SerializeField] private float winDelayTime = 1f;
+    [SerializeField] private float resetDelayTime = 2f;
     private LevelData currentLevel;
     private UIManager uiManager;
 
@@ -61,9 +63,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine("Delay");
     }
 
-    public void CompleteLevel()
+    public void StartCompleteLevel()
     {
-        
+        StartCoroutine("WinDelay");
     }
 
     private void InitializeLevel()
@@ -88,15 +90,26 @@ public class GameManager : MonoBehaviour
         CreateBoat();
     }
 
+    private void CompleteLevel()
+    {
+        Debug.Log("YIPEEEEEE");
+    }
+
     private void CreateBoat()
     {
         GameObject newBoat = Instantiate(boat, respawnPoint.transform.position, Quaternion.identity);
         cam.boat = newBoat.transform;
     }
 
-    private IEnumerator Delay()
+    private IEnumerator ResetDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(resetDelayTime);
         Reset();
+    }
+
+    private IEnumerator WinDelay()
+    {
+        yield return new WaitForSeconds(winDelayTime);
+        CompleteLevel();
     }
 }
