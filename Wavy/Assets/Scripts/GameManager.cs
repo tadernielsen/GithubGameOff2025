@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine("ResetDelay");
     }
 
+    public void PlayerReset()
+    {
+        Reset();
+    }
+
     public void StartCompleteLevel()
     {
         StartCoroutine("WinDelay");

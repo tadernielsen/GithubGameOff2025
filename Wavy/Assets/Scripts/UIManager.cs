@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject pauseMenuUI;
+    public GameObject goalUI;
+    public GameObject playerUI;
+
+    [Header("Main Game UI")]
     public GameObject dropsBar;
     public GameObject healthBar;
     public GameObject itemBar;
@@ -40,5 +45,20 @@ public class UIManager : MonoBehaviour
     public void UpdateObject(string itemName)
     {
         objectName.text = itemName;
+    }
+
+    public void TogglePauseMenu()
+    {
+        pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
+    }
+
+    public void ToggleGoalUI()
+    {
+        goalUI.SetActive(!goalUI.activeSelf);
+    }
+
+    public void TogglePlayerUI()
+    {
+        playerUI.SetActive(!playerUI.activeSelf);
     }
 }
