@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject respawnPoint;
     private HighAngleCamera cam;
+    private DropObject dropObject;
 
     void OnEnable()
     {
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     public void StartReset()
     {
+        dropObject.boatActive = false;
         StartCoroutine("ResetDelay");
     }
 
@@ -73,6 +75,7 @@ public class GameManager : MonoBehaviour
         currentLevel = FindObjectOfType<LevelData>();
         uiManager = FindObjectOfType<UIManager>();
         cam = FindObjectOfType<HighAngleCamera>();
+        dropObject = FindObjectOfType<DropObject>();
 
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
 
@@ -84,10 +87,16 @@ public class GameManager : MonoBehaviour
 
     private void Reset()
     {
+        if (cam.boat != null)
+        {
+            Destroy(cam.boat.gameObject);
+        }
+
         currentLevel.objectDropped = 0;
         uiManager.UpdateDrops();
 
         CreateBoat();
+        dropObject.boatActive = true;
     }
 
     private void CompleteLevel()

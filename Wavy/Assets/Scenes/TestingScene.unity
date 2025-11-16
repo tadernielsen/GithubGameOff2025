@@ -1418,8 +1418,9 @@ MonoBehaviour:
   - {fileID: 4711051489592764396, guid: d19560c01c245da4eb908ef7403692e0, type: 3}
   - {fileID: 4711051489592764396, guid: 7635d826c3241c54fb819a38c6f831b7, type: 3}
   cam: {fileID: 330585545}
-  clickDelay: 0.5
+  clickDelay: 1
   dropHeight: 2
+  canClick: 1
 --- !u!1 &359264178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,7 +2080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &637764535
 RectTransform:
   m_ObjectHideFlags: 0

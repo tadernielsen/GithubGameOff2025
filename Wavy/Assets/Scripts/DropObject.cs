@@ -8,6 +8,7 @@ public class DropObject : MonoBehaviour
     public Camera cam;
     public float clickDelay = 0.5f;
     public float dropHeight = 2f;
+    public bool boatActive = true;
 
     private bool canClick = true;
     private int currentIndex = 0;
@@ -28,6 +29,11 @@ public class DropObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!boatActive)
+        {
+            return;
+        }
+
         if (Input.GetAxis("Mouse ScrollWheel") > 0f && currentIndex < objects.Length - 1)
         {
             currentIndex++;
