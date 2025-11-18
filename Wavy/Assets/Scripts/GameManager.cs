@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 
     public void StartCompleteLevel()
     {
+        dropObject.boatActive = false;
         StartCoroutine("WinDelay");
     }
 
@@ -106,7 +107,8 @@ public class GameManager : MonoBehaviour
 
     private void CompleteLevel()
     {
-        Debug.Log("YIPEEEEEE");
+        uiManager.TogglePlayerUI();
+        uiManager.OpenGoalUI(currentLevel.objectDropped, currentLevel.par);
     }
 
     private void CreateBoat()

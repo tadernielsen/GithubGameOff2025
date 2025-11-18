@@ -50,11 +50,28 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu()
     {
         pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
+
+        if (pauseMenuUI.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
-    public void ToggleGoalUI()
+    public void OpenGoalUI(int drops = 0, int par = 0)
     {
-        goalUI.SetActive(!goalUI.activeSelf);
+        goalUI.SetActive(true);
+        goalUI.transform.Find("Drop amount").GetComponent<TextMeshProUGUI>().text = "Drops: " + drops.ToString();
+        goalUI.transform.Find("Par amount").GetComponent<TextMeshProUGUI>().text = "Par: " + par.ToString();
+        // Time
+    }
+
+    public void CloseGoalUI()
+    {
+        goalUI.SetActive(false);
     }
 
     public void TogglePlayerUI()

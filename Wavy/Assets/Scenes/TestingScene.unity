@@ -1420,7 +1420,7 @@ MonoBehaviour:
   cam: {fileID: 330585545}
   clickDelay: 1
   dropHeight: 2
-  boatActive: 0
+  boatActive: 1
 --- !u!1 &359264178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5098,7 +5098,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1172769029}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ToggleGoalUI
+        m_MethodName: CloseGoalUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
