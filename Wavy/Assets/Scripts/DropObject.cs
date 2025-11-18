@@ -29,6 +29,11 @@ public class DropObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameManager.PauseUnpause();
+        }
+
         if (!boatActive)
         {
             return;

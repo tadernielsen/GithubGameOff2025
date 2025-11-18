@@ -50,15 +50,6 @@ public class UIManager : MonoBehaviour
     public void TogglePauseMenu()
     {
         pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
-
-        if (pauseMenuUI.activeSelf)
-        {
-            Time.timeScale = 0f;
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
     }
 
     public void OpenGoalUI(int drops = 0, int par = 0)

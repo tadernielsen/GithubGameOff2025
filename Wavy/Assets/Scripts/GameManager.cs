@@ -76,6 +76,21 @@ public class GameManager : MonoBehaviour
         StartCoroutine("WinDelay");
     }
 
+    public void PauseUnpause()
+    {
+        uiManager.TogglePauseMenu();
+        uiManager.TogglePlayerUI();
+
+        if (uiManager.pauseMenuUI.activeSelf)
+        {
+            dropObject.boatActive = false;
+        }
+        else
+        {
+            dropObject.boatActive = true;
+        }
+    }
+
     private void InitializeLevel()
     {
         currentLevel = FindObjectOfType<LevelData>();
