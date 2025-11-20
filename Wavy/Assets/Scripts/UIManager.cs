@@ -10,9 +10,9 @@ public class UIManager : MonoBehaviour
     public GameObject playerUI;
 
     [Header("Main Game UI")]
-    public GameObject dropsBar;
-    public GameObject healthBar;
-    public GameObject itemBar;
+    [SerializeField] private GameObject dropsBar;
+    [SerializeField] private GameObject healthBar;
+    [SerializeField] private GameObject itemBar;
 
     private TextMeshProUGUI dropsValue;
     private TextMeshProUGUI parValue;
