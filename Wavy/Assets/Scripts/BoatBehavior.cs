@@ -13,19 +13,17 @@ public class BoatBehavior : MonoBehaviour
     public float drag = 1f;
     public float angularDrag = 1f;
 
-    private UIManager uiManager;
     private Rigidbody rb;
     private GameManager gameManager;
 
     void Awake()
     {
-        uiManager = FindObjectOfType<UIManager>();
         gameManager = GameManager.Instance;
     }
 
     void Start()
     {
-        uiManager.UpdateHealth(health);
+        gameManager.UpdateHealth(health);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -45,7 +43,7 @@ public class BoatBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             health--;
-            uiManager.UpdateHealth(health);
+            gameManager.UpdateHealth(health);
 
             if (health <= 0)
             {

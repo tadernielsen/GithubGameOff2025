@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class DropObject : MonoBehaviour
@@ -13,17 +14,15 @@ public class DropObject : MonoBehaviour
     private bool canClick = true;
     private int currentIndex = 0;
     private GameManager gameManager;
-    private UIManager uiManager;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
 
-        uiManager = FindObjectOfType<UIManager>();
-        updateUI();
-
         gameManager = GameManager.Instance;
+
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -43,13 +42,13 @@ public class DropObject : MonoBehaviour
         {
             currentIndex++;
 
-            updateUI();
+            UpdateUI();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f && currentIndex > 0)
         {
             currentIndex--;
 
-            updateUI();
+            UpdateUI();
         }
 
         Vector2 mousePos = Input.mousePosition;
@@ -65,9 +64,9 @@ public class DropObject : MonoBehaviour
         }
     }
 
-    private void updateUI()
+    private void UpdateUI()
     {
-        uiManager.UpdateObject(objects[currentIndex].GetComponent<ObjectBehavior>().objectName);
+        gameManager.UpdateObjectType(objects[currentIndex].GetComponent<ObjectBehavior>().objectName);
     }
 
     private void dropObject(Vector3 position)

@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void StartReset()
     {
         dropObject.boatActive = false;
+        UpdateHealth(0);
         StartCoroutine("ResetDelay");
     }
 
@@ -142,5 +143,15 @@ public class GameManager : MonoBehaviour
         {
             dropObject.boatActive = true;
         }
+    }
+
+    public void UpdateObjectType(string name)
+    {
+        uiManager.UpdateObject(name);
+    }
+
+    public void UpdateHealth(int health)
+    {
+        uiManager.UpdateHealth(health);
     }
 }
