@@ -52,45 +52,7 @@ public class GameManager : MonoBehaviour
             InitializeLevel();
         }
     }
-
-    public void DroppedObject()
-    {
-        currentLevel.objectDropped++;
-        uiManager.UpdateDrops(currentLevel.objectDropped);
-    }
-
-    public void StartReset()
-    {
-        dropObject.boatActive = false;
-        StartCoroutine("ResetDelay");
-    }
-
-    public void PlayerReset()
-    {
-        Reset();
-    }
-
-    public void StartCompleteLevel()
-    {
-        dropObject.boatActive = false;
-        StartCoroutine("WinDelay");
-    }
-
-    public void PauseUnpause()
-    {
-        uiManager.TogglePauseMenu();
-        uiManager.TogglePlayerUI();
-
-        if (uiManager.pauseMenuUI.activeSelf)
-        {
-            dropObject.boatActive = false;
-        }
-        else
-        {
-            dropObject.boatActive = true;
-        }
-    }
-
+    
     private void InitializeLevel()
     {
         currentLevel = FindObjectOfType<LevelData>();
@@ -142,5 +104,43 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(winDelayTime);
         CompleteLevel();
+    }
+
+    public void DroppedObject()
+    {
+        currentLevel.objectDropped++;
+        uiManager.UpdateDrops(currentLevel.objectDropped);
+    }
+
+    public void StartReset()
+    {
+        dropObject.boatActive = false;
+        StartCoroutine("ResetDelay");
+    }
+
+    public void PlayerReset()
+    {
+        Reset();
+    }
+
+    public void StartCompleteLevel()
+    {
+        dropObject.boatActive = false;
+        StartCoroutine("WinDelay");
+    }
+
+    public void PauseUnpause()
+    {
+        uiManager.TogglePauseMenu();
+        uiManager.TogglePlayerUI();
+
+        if (uiManager.pauseMenuUI.activeSelf)
+        {
+            dropObject.boatActive = false;
+        }
+        else
+        {
+            dropObject.boatActive = true;
+        }
     }
 }
