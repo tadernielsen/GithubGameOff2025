@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8120232762359842767}
   - component: {fileID: 7210265594745063017}
   - component: {fileID: 2388004673145983629}
+  - component: {fileID: 4201160842519286620}
   m_Layer: 6
   m_Name: Boat
   m_TagString: Boat
@@ -152,3 +153,24 @@ MonoBehaviour:
   displacementAmount: 0.01
   drag: 0.05
   angularDrag: 0.1
+--- !u!135 &4201160842519286620
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4133835630252496774}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 115
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.0191724
+  m_Center: {x: 0, y: 0.10457444, z: 0}

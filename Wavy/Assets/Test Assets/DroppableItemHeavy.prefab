@@ -161,5 +161,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Heavy
-  radius: 4
+  waveSize: 5
   height: 8

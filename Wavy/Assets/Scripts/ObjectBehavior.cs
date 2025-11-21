@@ -6,6 +6,6 @@ using UnityEngine;
 public class ObjectBehavior : MonoBehaviour
 {
     public string objectName;
-    public float radius;
+    public float waveSize;
     public float height = 8f;
 }

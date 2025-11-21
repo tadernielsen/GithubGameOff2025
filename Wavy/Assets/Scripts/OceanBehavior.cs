@@ -10,13 +10,15 @@ public class OceanBehavior : MonoBehaviour
         public float radius;
         public float time;
         public float maxRadius;
+        public float waveSize;
 
-        public Wave(Vector3 pos, float time, float maxRadius)
+        public Wave(Vector3 pos, float time, float size)
         {
             this.position = pos;
             this.radius = 0.0f;
             this.time = time;
-            this.maxRadius = maxRadius;
+            this.maxRadius = size * 2;
+            this.waveSize = size;
         }
     }
 
@@ -40,11 +42,11 @@ public class OceanBehavior : MonoBehaviour
         UpdateWave();
     }
 
-    private void CreateWave(Vector3 pos, float radius)
+    private void CreateWave(Vector3 pos, float size)
     {
         Debug.Log("Creating Wave");
         Vector3 wavePostion = new Vector3(pos.x, transform.position.y, pos.z);
-        currentWaves.Add(new Wave(wavePostion, Time.time, radius));
+        currentWaves.Add(new Wave(wavePostion, Time.time, size));
     }
 
     private void UpdateWave()
@@ -90,7 +92,8 @@ public class OceanBehavior : MonoBehaviour
         Vector3 objPos = rb.position;
         Vector3 direction = new Vector3(objPos.x - wave.position.x, 0, objPos.z - wave.position.z).normalized;
 
-        Vector3 force = direction * waveStrength;
+        float newWaveStrength = waveStrength * (wave.waveSize / 5.0f);
+        Vector3 force = direction * newWaveStrength * (1.0f - (distanceFromWaveEdge / waveWidth));
 
         rb.AddForce(force, ForceMode.Force);
     }
@@ -105,6 +108,6 @@ public class OceanBehavior : MonoBehaviour
         Vector3 contact = other.ClosestPoint(transform.position);
         ObjectBehavior obj = other.gameObject.GetComponent<ObjectBehavior>();
 
-        CreateWave(contact, obj.radius);
+        CreateWave(contact, obj.waveSize);
     }
 }
