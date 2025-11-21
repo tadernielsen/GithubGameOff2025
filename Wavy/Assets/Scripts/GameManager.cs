@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
 
         CreateBoat();
         dropObject.boatActive = true;
+        cam.cameraActive = true;
     }
 
     private void CompleteLevel()
@@ -97,12 +98,14 @@ public class GameManager : MonoBehaviour
     private IEnumerator ResetDelay()
     {
         yield return new WaitForSeconds(resetDelayTime);
+
         Reset();
     }
 
     private IEnumerator WinDelay()
     {
         yield return new WaitForSeconds(winDelayTime);
+
         CompleteLevel();
     }
 
@@ -115,7 +118,9 @@ public class GameManager : MonoBehaviour
     public void StartReset()
     {
         dropObject.boatActive = false;
+        cam.cameraActive = false;
         UpdateHealth(0);
+
         StartCoroutine("ResetDelay");
     }
 
@@ -127,6 +132,7 @@ public class GameManager : MonoBehaviour
     public void StartCompleteLevel()
     {
         dropObject.boatActive = false;
+        cam.cameraActive = false;
         StartCoroutine("WinDelay");
     }
 
@@ -138,10 +144,12 @@ public class GameManager : MonoBehaviour
         if (uiManager.pauseMenuUI.activeSelf)
         {
             dropObject.boatActive = false;
+            cam.cameraActive = false;
         }
         else
         {
             dropObject.boatActive = true;
+            cam.cameraActive = true;
         }
     }
 

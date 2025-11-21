@@ -6,12 +6,15 @@ public class HighAngleCamera : MonoBehaviour
 {
     public Transform boat;
     public float cameraSpeed = 2.0f;
+    public bool cameraActive = true;
 
     private bool lockedOnBoat = false;
 
     // Update is called once per frame
     void Update()
     {
+        if (!cameraActive) return;
+
         if (Input.GetKeyDown(KeyCode.L))
         {
             lockedOnBoat = !lockedOnBoat;
