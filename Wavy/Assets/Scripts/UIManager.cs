@@ -52,12 +52,15 @@ public class UIManager : MonoBehaviour
         pauseMenuUI.SetActive(!pauseMenuUI.activeSelf);
     }
 
-    public void OpenGoalUI(int drops = 0, int par = 0)
+    public void OpenGoalUI(int drops = 0, int par = 0, float time = 0f)
     {
         goalUI.SetActive(true);
         goalUI.transform.Find("Drop amount").GetComponent<TextMeshProUGUI>().text = "Drops: " + drops.ToString();
         goalUI.transform.Find("Par amount").GetComponent<TextMeshProUGUI>().text = "Par: " + par.ToString();
-        // Time
+
+        int minutes = Mathf.FloorToInt(time / 60f);
+        int seconds = Mathf.FloorToInt(time % 60f);
+        goalUI.transform.Find("Time").GetComponent<TextMeshProUGUI>().text = "Time: " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void CloseGoalUI()

@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private GameObject respawnPoint;
     private HighAngleCamera cam;
     private DropObject dropObject;
+    private Timer timer;
 
     void OnEnable()
     {
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
         uiManager = FindObjectOfType<UIManager>();
         cam = FindObjectOfType<HighAngleCamera>();
         dropObject = FindObjectOfType<DropObject>();
+        timer = FindObjectOfType<Timer>();
 
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn");
 
@@ -66,6 +68,8 @@ public class GameManager : MonoBehaviour
         uiManager.UpdatePar(currentLevel.par);
 
         CreateBoat();
+
+        timer.StartTimer();
     }
 
     private void Reset()
@@ -79,14 +83,20 @@ public class GameManager : MonoBehaviour
         uiManager.UpdateDrops();
 
         CreateBoat();
+
         dropObject.boatActive = true;
         cam.cameraActive = true;
+
+        timer.ResetTimer();
+        timer.StartTimer();
     }
 
     private void CompleteLevel()
     {
+        float time = timer.GetTime();
+
         uiManager.TogglePlayerUI();
-        uiManager.OpenGoalUI(currentLevel.objectDropped, currentLevel.par);
+        uiManager.OpenGoalUI(currentLevel.objectDropped, currentLevel.par, time);
     }
 
     private void CreateBoat()
@@ -119,6 +129,7 @@ public class GameManager : MonoBehaviour
     {
         dropObject.boatActive = false;
         cam.cameraActive = false;
+
         UpdateHealth(0);
 
         StartCoroutine("ResetDelay");
@@ -133,6 +144,8 @@ public class GameManager : MonoBehaviour
     {
         dropObject.boatActive = false;
         cam.cameraActive = false;
+        timer.StopTimer();
+
         StartCoroutine("WinDelay");
     }
 
@@ -145,11 +158,13 @@ public class GameManager : MonoBehaviour
         {
             dropObject.boatActive = false;
             cam.cameraActive = false;
+            timer.StopTimer();
         }
         else
         {
             dropObject.boatActive = true;
             cam.cameraActive = true;
+            timer.StartTimer();
         }
     }
 
