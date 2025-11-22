@@ -16,6 +16,8 @@ public class BombScript : MonoBehaviour
     {
         Destroy(collision.gameObject);
 
+        // Play Explosion Particle Here
+
         gameManager.StartReset();
     }
 }
