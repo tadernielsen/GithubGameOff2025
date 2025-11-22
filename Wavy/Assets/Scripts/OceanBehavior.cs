@@ -30,12 +30,6 @@ public class OceanBehavior : MonoBehaviour
     [SerializeField] private LayerMask boatLayer;
     private List<Wave> currentWaves = new List<Wave>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
